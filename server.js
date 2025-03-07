@@ -39,7 +39,11 @@ try {
 //应用静态资源
 app.use(static(path.join(__dirname, staticPath), {mobile: './mobile'}));
 //数据处理
-app.use(bodyParser());
+// 设置请求体大小限制
+app.use(bodyParser({
+    jsonLimit: '30mb', // 限制 JSON 请求体大小为 1MB
+    formLimit: '30mb', // 限制表单请求体大小为 1MB
+}));
 app.use(cors());
 
 //日志记录
@@ -69,16 +73,16 @@ app.use(async (ctx, next) => {
     try {
         if (ctx.getUserId) {
             // 收集日志字段信息
-            const body = {
-                staffId: ctx.getUserId || null, url: ctx.originalUrl || null, result: ctx.response.body?.msg || null
-            }
-            const valueList = Object.values(body)
-            const sql = `
-            insert
-            into  kb_log(staff_id,url,result)
-            VALUES($1,$2,$3) returning *;
-            `;
-            pool.query(sql, valueList)
+            // const body = {
+            //     staffId: ctx.getUserId || null, url: ctx.originalUrl || null, result: ctx.response.body?.msg || null
+            // }
+            // const valueList = Object.values(body)
+            // const sql = `
+            // insert
+            // into  kb_log(staff_id,url,result)
+            // VALUES($1,$2,$3) returning *;
+            // `;
+            // pool.query(sql, valueList)
         }
     } catch (e) {
         console.error(e)

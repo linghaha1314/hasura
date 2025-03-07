@@ -1010,20 +1010,23 @@ FROM kb_courses;`
             charPreset: '1234567890'
         })
         // ctx.cookies.set('code', c.text)
-        ctx.request.url = '/dictionaryData/updateById'
-        ctx.request.body = {
-            code: c.text,
-            id: 'c0fe3740-ed2d-4f9d-8629-2dbd7c3cc2ad',
-            name: '验证码',
-            remark: '验证码存储',
-            status: 0,
-            typeId: '3e8c3fda-a532-4c22-bda6-4dd248561b92'
-        }
-        const data = await updateById(ctx);
-        if (data) {
-            ctx.body = {
-                data: c.data, text: c.text, success: true, msg: '查询成功！'
-            }
+        // ctx.request.url = '/dictionaryData/updateById'
+        // ctx.request.body = {
+        //     code: c.text,
+        //     id: 'c0fe3740-ed2d-4f9d-8629-2dbd7c3cc2ad',
+        //     name: '验证码',
+        //     remark: '验证码存储',
+        //     status: 0,
+        //     typeId: '3e8c3fda-a532-4c22-bda6-4dd248561b92'
+        // }
+        // const data = await updateById(ctx);
+        // if (data) {
+        //     ctx.body = {
+        //         data: c.data, text: c.text, success: true, msg: '查询成功！'
+        //     }
+        // }
+        ctx.body = {
+            data: c.data, text: c.text, success: true, msg: '查询成功！'
         }
     });
 
